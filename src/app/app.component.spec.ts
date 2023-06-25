@@ -21,8 +21,9 @@ describe('AppComponent', () => {
 
   it(`should have as title 'angular-unit-test'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angular-unit-test');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toEqual('Hello angular Jenkins Sunday');
   }));
 
   it('should render title in a h1 tag', async(() => {
