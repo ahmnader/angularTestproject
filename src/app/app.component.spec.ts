@@ -23,13 +23,13 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toEqual('Hello angular Jenkins Sunday 2');
+    expect(compiled.querySelector('h1').textContent).toEqual('Welcome Jenkins');
   }));
 
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Hello angular Jenkins');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome Jenkins');
   }));
 });
