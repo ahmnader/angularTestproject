@@ -1,0 +1,47 @@
+
+pipeline {
+    agent { label 'VirtualMachine'}
+    
+    stages {
+        
+        stage('Install dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        
+        stage('test') {
+            steps {
+                bat 'npm run test-no-watch'
+            }
+        }
+        stage("build & SonarQube analysis") {
+            steps {
+                withSonarQubeEnv('sq1') {
+                    sh './gradlew sonarqube'
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+        stage('Publish') {
+            steps {
+                bat 'npm run prod-build-dev'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                bat 'C:\\windows\\system32\\inetsrv\\appcmd.exe stop apppool /apppool.name:"jenkinsAngularAzure"'
+                bat 'xcopy /s "dist" "C:\\inetpub\\wwwroot" /Y'
+                bat 'C:\\windows\\system32\\inetsrv\\appcmd.exe start apppool /apppool.name:"jenkinsAngularAzure"'
+            }
+        }
+    }
+}
