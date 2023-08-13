@@ -17,8 +17,8 @@ pipeline {
         }
         stage("build & SonarQube analysis") {
             steps {
-                withSonarQubeEnv('sq1') {
-                    sh './gradlew sonarqube'
+                withSonarQubeEnv(installationName:'sq1') {
+                    sh './mvnw clean sonar:sonar'
                 }
             }
         }
