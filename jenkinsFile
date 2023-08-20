@@ -18,7 +18,7 @@ pipeline {
         stage("build & SonarQube analysis") {
             steps {
                 withSonarQubeEnv(installationName:'sq1') {
-                    bat 'mvn -f F:\jenkins\.jenkins\war\META-INF\maven\org.jenkins-ci.main\jenkins-war\pom.xml clean sonar:sonar'
+                    bat ' mvn -f F:\jenkins\.jenkins\war\META-INF\maven\org.jenkins-ci.main\jenkins-war\pom.xml clean sonar:sonar'
                 }
             }
         }
