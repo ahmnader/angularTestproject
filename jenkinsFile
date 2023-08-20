@@ -19,8 +19,10 @@ pipeline {
         stage("build & SonarQube analysis") {
             steps {
                 withSonarQubeEnv(installationName:'sq1') {
-                    bat 'cd angularTest'
-                    bat 'mvn install sonar:sonar'
+                bat """
+                    cd angularTest 
+                    mvn clean package sonar:sonar
+                """
                 }
             }
         }
