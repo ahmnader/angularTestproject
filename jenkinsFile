@@ -18,7 +18,7 @@ pipeline {
 
         stage('Maven Environment') {
             steps {
-                bat 'mvn archetype:generate \sonar \1 \51 \1 \angularTest \1.0-SNAPSHOT \1 \Y'
+                bat 'mvn archetype:generate /sonar /1 /51 /1 /angularTest /1.0-SNAPSHOT /1 /Y'
             }
         }
 
