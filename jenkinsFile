@@ -6,7 +6,7 @@ pipeline {
         
         stage('Install dependencies') {
             steps {
-                bat 'npm install'
+                bat 'mvn install'
             }
         }
         
@@ -19,10 +19,7 @@ pipeline {
         stage("build & SonarQube analysis") {
             steps {
                 withSonarQubeEnv(installationName:'sq1') {
-                bat """
-                    cd angularTest 
-                    mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar
-                """
+                    bat 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
                 }
             }
         }
