@@ -23,7 +23,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toEqual('Welcome Jenkins SOnar');
+    expect(compiled.querySelector('h1').textContent).toEqual('Welcome Jenkins Sonar');
   }));
 
   it('should render title in a h1 tag', async(() => {
