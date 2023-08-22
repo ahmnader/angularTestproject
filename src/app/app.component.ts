@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-root',
