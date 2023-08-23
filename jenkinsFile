@@ -27,8 +27,10 @@ pipeline {
 
         stage("Quality Gate") {
             steps {
-                waitForQualityGate abortPipeline: true,
-                credentialsId: squ_a7a42a0744d9da3bb57c13e70555c276de356a06
+                def qg = waitForQualityGate abortPipeline: true
+                    if (qg.status != 'OK') {
+                        error "Quality Gate did not pass. Check SonarQube for details."
+                    }
             }
         }
 
