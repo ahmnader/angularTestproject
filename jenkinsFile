@@ -26,11 +26,8 @@ pipeline {
         }
 
         stage("Quality Gate") {
-            timeout(time: 1, unit: 'HOURS') {
-                def qualityGate = waitForQualityGate()
-                if (qualityGate.status == 'ERROR') {
-                    currentBuild.result = 'UNSTABLE'
-                }
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
 
