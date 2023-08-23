@@ -21,8 +21,13 @@ pipeline {
                 withSonarQubeEnv(installationName:'sq1') {
                     bat 'npm install sonar-scanner --save-dev'
                     bat 'npm run sonar'
-                    waitForQualityGate abortPipeline: true
                 }
+            }
+        }
+
+        stage("Quality Gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
 
