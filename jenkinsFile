@@ -27,10 +27,10 @@ pipeline {
 
         stage("Quality Gate") {
             steps {
-                def qg = waitForQualityGate abortPipeline: true
-                    if (qg.status != 'OK') {
-                        error "Quality Gate did not pass. Check SonarQube for details."
-                    }
+                qg = waitForQualityGate abortPipeline: true
+                if (qg.status != 'OK') {
+                    error "Quality Gate did not pass. Check SonarQube for details."
+                }
             }
         }
 
