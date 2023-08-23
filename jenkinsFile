@@ -27,7 +27,8 @@ pipeline {
 
         stage("Quality Gate") {
             steps {
-                waitForQualityGate abortPipeline: true
+                waitForQualityGate abortPipeline: true,
+                credentialsId: squ_a7a42a0744d9da3bb57c13e70555c276de356a06
             }
         }
 
